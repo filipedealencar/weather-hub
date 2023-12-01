@@ -5,7 +5,6 @@ export interface ThemeInterface {
   mediaValues: breakpointValues;
   typography: typographyValues;
   colors: TypeColors;
-  post: PostSizes;
 }
 
 declare module "styled-components" {
@@ -156,31 +155,6 @@ export type MediaFunction = {
 };
 
 export type Colors = { dark: TypeColors; light: TypeColors };
-
-interface PostSizes {
-  size: {
-    mini: {
-      width: string;
-      height: string;
-    };
-    small: {
-      width: string;
-      height: string;
-    };
-    medium: {
-      width: string;
-      height: string;
-    };
-    larger: {
-      width: string;
-      height: string;
-    };
-    extraLarge: {
-      width: string;
-      height: string;
-    };
-  };
-}
 
 interface TypeColors {
   background: string;

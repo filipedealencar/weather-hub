@@ -11,6 +11,7 @@ import React, {
   useState,
 } from "react";
 import { NextPage } from "next";
+import "@/styles/fonts.css";
 
 export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

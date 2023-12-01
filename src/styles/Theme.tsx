@@ -144,23 +144,12 @@ const colors: Colors = {
   },
 };
 
-const post = {
-  size: {
-    mini: { width: "375px", height: "80px" },
-    small: { width: "208px", height: "288px" },
-    medium: { width: "375px", height: "300px" },
-    larger: { width: "800px", height: "256px" },
-    extraLarge: { width: "542px", height: "630px" },
-  },
-};
-
 const theme = (mode: "light" | "dark"): ThemeInterface => {
   return {
     media: mediaType,
     mediaValues: breakpointsSizes,
     colors: colors[mode],
     typography: typography,
-    post: post,
   };
 };
 
