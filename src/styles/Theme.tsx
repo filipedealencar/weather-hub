@@ -101,7 +101,7 @@ const colors: Colors = {
   light: {
     background: "#0f0f0f",
     primary: {
-      clearSky: "#57cbdc",
+      clearSky: `linear-gradient(180deg,rgba(86, 203, 219, 1) 0%,rgba(58, 158, 178, 1) 100%)`,
       partlyCloudy: "#B0E0E6",
       mostlyCloudy: "#778899",
       cloudy: "#A9A9A9",
@@ -109,10 +109,10 @@ const colors: Colors = {
       foggy: "#D3D3D3",
       mist: "#E6E6FA",
       haze: "#F0E68C",
-      rain: "#616978",
+      rain: `linear-gradient(180deg, rgba(97,105,120,1) 0%, rgba(65,72,88,1) 100%);`,
       drizzle: "#87CEFA",
       freezingRain: "#B0C4DE",
-      snow: "#e0e0e0",
+      snow: "linear-gradient(180deg, rgba(224,224,224,1) 0%, rgba(172,172,172,1) 100%);",
       sleet: "#ADD8E6",
       hail: "#F5F5F5",
       thunderstorm: "#556B2F",

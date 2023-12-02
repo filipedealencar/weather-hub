@@ -34,7 +34,7 @@ export const TitleWeather = styled.h2`
   align-items: center;
   justify-content: center;
   font-size: ${({ theme }) => theme.typography.fontSize.ml};
-  font-family: Montserrat;
+  font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[300]};
   color: #fff;
   text-transform: uppercase;
@@ -44,8 +44,8 @@ export const TitleSelect = styled.span`
   width: 100%;
   align-items: center;
   justify-content: center;
-  font-size: ${({ theme }) => theme.typography.fontSize.md};
-  font-family: "Outfit", sans-serif;
+  font-size: 28px;
+  font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[100]};
   color: #e4e4e4;
 `;
@@ -56,7 +56,7 @@ export const TitleCity = styled.h2`
   align-items: center;
   justify-content: center;
   font-size: 22px;
-  font-family: Montserrat;
+  font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[300]};
   color: #fff;
 `;

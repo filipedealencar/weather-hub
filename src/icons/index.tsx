@@ -14,3 +14,23 @@ export const EarthIcon: React.FC = ({}) => {
     </svg>
   );
 };
+
+export const ArrowIcon: React.FC<{ arrowDown?: boolean }> = ({ arrowDown }) => {
+  return (
+    <svg
+      width={30}
+      height={20}
+      viewBox="0 0 63 186"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      transform={
+        arrowDown
+          ? "matrix(1,-1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"
+          : ""
+      }
+    >
+      <path d="M31.5 0L62.2439 53.25H0.756098L31.5 0Z" fill="#6D6D6D" />
+      <path d="M32 48L31.5 186" stroke="#6D6D6D" strokeWidth={10} />
+    </svg>
+  );
+};

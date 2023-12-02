@@ -28,8 +28,8 @@ const Home: React.FC = ({}) => {
             rows={{
               count: 1,
             }}
-            spaceColumns={18}
-            spaceRows={18}
+            spaceColumns={36}
+            spaceRows={48}
           >
             <TitleCity>Dallol</TitleCity>
             <TitleCity>Fairbanks</TitleCity>
