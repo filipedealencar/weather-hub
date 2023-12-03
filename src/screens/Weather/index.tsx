@@ -1,20 +1,14 @@
-import { ArrowIcon } from "@/icons";
+import { IconCloud } from "@/icons";
 import {
-  ContainerInfoDegreesCelsius,
   ContainerWeather,
-  ContainertArrow,
-  ContentArrow,
-  ContentDegreesCelsius,
   ContentTitle,
   ContentWeather,
-  DegreesCelsius,
-  IconDegrees,
-  SymbolDegreesCelsius,
   TitleCity,
   TitleTypeWeather,
-  ValuesArrow,
   WrapperWeather,
 } from "./styles";
+import { DegressValue } from "./DegreesValue";
+import { WeatherTimeline } from "./WeatherTimeline";
 
 const Weather: React.FC = ({}) => {
   return (
@@ -25,25 +19,10 @@ const Weather: React.FC = ({}) => {
             <TitleCity>London</TitleCity>
             <TitleTypeWeather>snowy</TitleTypeWeather>
           </ContentTitle>
-          <ContentDegreesCelsius>
-            <DegreesCelsius>-2</DegreesCelsius>
-            <ContainerInfoDegreesCelsius>
-              <SymbolDegreesCelsius>
-                <IconDegrees>°</IconDegrees>C
-              </SymbolDegreesCelsius>
-              <ContainertArrow>
-                <ContentArrow>
-                  <ArrowIcon />
-                  <ValuesArrow>0</ValuesArrow>
-                </ContentArrow>
-                <ContentArrow>
-                  <ArrowIcon arrowDown />
-                  <ValuesArrow>8</ValuesArrow>
-                </ContentArrow>
-              </ContainertArrow>
-            </ContainerInfoDegreesCelsius>
-          </ContentDegreesCelsius>
+          <DegressValue />
+          <IconCloud width={200} height={200} types="02d" />
         </ContentWeather>
+        <WeatherTimeline />
       </ContainerWeather>
     </WrapperWeather>
   );

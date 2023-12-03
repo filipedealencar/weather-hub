@@ -1,32 +1,25 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-
-html,body {
- 
-    #__next{
+#__next{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-html{
-  width: 100vw;
-  height: 100vh;
-
-}
 
 
 
-   
-background-repeat: no-repeat;
+html,body {
+
     font-family: 'Open Sans',sans-serif;
     line-height: 20px;
-    background:  ${({ theme }) => theme.colors.background};
-
+    background: ${({ theme }) => theme.colors.primary.snow};
+    width: 100vw;
+  height: 100vh;
     font-size: 16px;
-    font-weight: ${({ theme }) => theme.typography.fontWeight[500]};
+    font-weight: 700;
     color: #8ea2ab;
     font-style: normal;
     scroll-behavior: smooth;
