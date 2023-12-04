@@ -27,7 +27,7 @@ export const TitleWeatherTimeline = styled.span`
   font-size: 1rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
 `;
 
 export const ContentDegreesWeatherTimeline = styled.div`
@@ -44,17 +44,17 @@ export const TitleDegreeWeatherTimeline = styled.span`
   font-size: 1.2rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
 `;
 
-export const DegreesWeatherTimeline = styled.span`
+export const DegreesWeatherTimeline = styled.span<{ $isUnavailable: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
   position: relative;
 
   &::before {
@@ -62,7 +62,8 @@ export const DegreesWeatherTimeline = styled.span`
     font-size: 0.9rem;
     position: absolute;
     top: -15%;
-    right: -60%;
+    left: 100%;
+    display: ${({ $isUnavailable }) => $isUnavailable && "none"};
   }
 `;
 
@@ -92,7 +93,7 @@ export const TitleWeatherTimelineStatistic = styled.div`
   font-size: 1rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[200]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
 `;
 export const ValueWeatherTimelineStatistic = styled.div`
   display: flex;
@@ -101,7 +102,7 @@ export const ValueWeatherTimelineStatistic = styled.div`
   font-size: 1rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
 `;
 
 export const VerticalSeparator = styled.div`

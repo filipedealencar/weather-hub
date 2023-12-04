@@ -16,8 +16,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { formatTimestamp } from "@/helpers/util";
 import { WeatherDataDto } from "@/dto/Weather";
 import { GlobalContext } from "@/contexts/GlobalContext";
+import Skeleton from "react-loading-skeleton";
 
-export const WeatherTimeline: React.FC<IWeatherTimeline> = ({ options }) => {
+export const WeatherTimeline: React.FC<IWeatherTimeline> = ({
+  options,
+  isLoading,
+}) => {
   const { sizeScreen } = useContext(GlobalContext);
   const [isMobile, setIsMobile] = useState(sizeScreen.width < 1080);
 
@@ -75,14 +79,56 @@ export const WeatherTimeline: React.FC<IWeatherTimeline> = ({ options }) => {
         {selectObjectsByTimePeriod(options.forecast)?.map((item, index) => (
           <ContainerWeatherTimeline key={index}>
             <TitleWeatherTimeline>
-              {getPeriodOfDay(new Date(item?.dt_txt).getHours())}
+              {isLoading ? (
+                <Skeleton
+                  baseColor="#c3c3c3"
+                  style={{ top: "25px" }}
+                  duration={1}
+                  height={10}
+                  width={60}
+                />
+              ) : (
+                getPeriodOfDay(new Date(item?.dt_txt).getHours())
+              )}
             </TitleWeatherTimeline>
-            <IconCloud types={item?.weather[0]?.icon} width={50} height={50} />
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                duration={1}
+                height={30}
+                width={60}
+                style={{ borderRadius: "25%", top: "25px" }}
+              />
+            ) : (
+              <IconCloud
+                types={item?.weather[0]?.icon}
+                width={50}
+                height={50}
+              />
+            )}
             <ContentDegreesWeatherTimeline>
-              <DegreesWeatherTimeline>
-                {Math.round(item?.main.temp)}
-              </DegreesWeatherTimeline>
-              <TitleDegreeWeatherTimeline>C</TitleDegreeWeatherTimeline>
+              {isLoading ? (
+                <Skeleton
+                  baseColor="#c3c3c3"
+                  style={{ top: "25px" }}
+                  duration={1}
+                  height={10}
+                  width={60}
+                />
+              ) : (
+                <>
+                  <DegreesWeatherTimeline
+                    $isUnavailable={isNaN(item?.main.temp)}
+                  >
+                    {isNaN(item?.main.temp)
+                      ? "N/A"
+                      : Math.round(item?.main.temp)}
+                  </DegreesWeatherTimeline>
+                  {!isNaN(item?.main.temp) && (
+                    <TitleDegreeWeatherTimeline>C</TitleDegreeWeatherTimeline>
+                  )}
+                </>
+              )}
             </ContentDegreesWeatherTimeline>
           </ContainerWeatherTimeline>
         ))}
@@ -100,46 +146,130 @@ export const WeatherTimeline: React.FC<IWeatherTimeline> = ({ options }) => {
       >
         <ContainerWeatherTimelineStatistic>
           <TitleWeatherTimelineStatistic>
-            wind speed
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              "wind speed"
+            )}
           </TitleWeatherTimelineStatistic>
           <ValueWeatherTimelineStatistic>
-            {`${
-              options.data?.wind?.speed
-                ? `${options.data?.wind?.speed} m/s`
-                : "unavailable"
-            } `}
-          </ValueWeatherTimelineStatistic>
-        </ContainerWeatherTimelineStatistic>
-        <ContainerWeatherTimelineStatistic>
-          <TitleWeatherTimelineStatistic>sunrise</TitleWeatherTimelineStatistic>
-          <ValueWeatherTimelineStatistic>
-            {`${
-              options.data?.sys?.sunrise
-                ? formatTimestamp(String(options.data?.sys?.sunrise))
-                : "unavailable"
-            }`}
-          </ValueWeatherTimelineStatistic>
-        </ContainerWeatherTimelineStatistic>
-        <ContainerWeatherTimelineStatistic>
-          <TitleWeatherTimelineStatistic>sunset</TitleWeatherTimelineStatistic>
-          <ValueWeatherTimelineStatistic>
-            {`${
-              options.data?.sys?.sunrise
-                ? formatTimestamp(String(options.data?.sys?.sunset))
-                : "unavailable"
-            }`}
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              `${
+                options.data?.wind?.speed
+                  ? `${options.data?.wind?.speed} m/s`
+                  : "N/A"
+              } `
+            )}
           </ValueWeatherTimelineStatistic>
         </ContainerWeatherTimelineStatistic>
         <ContainerWeatherTimelineStatistic>
           <TitleWeatherTimelineStatistic>
-            humidity
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              "sunrise"
+            )}
           </TitleWeatherTimelineStatistic>
           <ValueWeatherTimelineStatistic>
-            {`${
-              options.data?.main?.humidity
-                ? `${options.data?.main?.humidity} %`
-                : "unavailable"
-            } `}
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              `${
+                options.data?.sys?.sunrise
+                  ? formatTimestamp(String(options.data?.sys?.sunrise))
+                  : "N/A"
+              }`
+            )}
+          </ValueWeatherTimelineStatistic>
+        </ContainerWeatherTimelineStatistic>
+        <ContainerWeatherTimelineStatistic>
+          <TitleWeatherTimelineStatistic>
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              "sunset"
+            )}
+          </TitleWeatherTimelineStatistic>
+          <ValueWeatherTimelineStatistic>
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              `${
+                options.data?.sys?.sunrise
+                  ? formatTimestamp(String(options.data?.sys?.sunset))
+                  : "N/A"
+              }`
+            )}
+          </ValueWeatherTimelineStatistic>
+        </ContainerWeatherTimelineStatistic>
+        <ContainerWeatherTimelineStatistic>
+          <TitleWeatherTimelineStatistic>
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              "humidity"
+            )}
+          </TitleWeatherTimelineStatistic>
+          <ValueWeatherTimelineStatistic>
+            {isLoading ? (
+              <Skeleton
+                baseColor="#c3c3c3"
+                style={{ top: "25px" }}
+                duration={1}
+                height={10}
+                width={70}
+              />
+            ) : (
+              `${
+                options.data?.main?.humidity
+                  ? `${options.data?.main?.humidity} %`
+                  : "N/A"
+              } `
+            )}
           </ValueWeatherTimelineStatistic>
         </ContainerWeatherTimelineStatistic>
       </GridResponsive>

@@ -21,7 +21,7 @@ export const DegreesCelsius = styled.span`
   font-size: 7.5rem;
   font-family: "Outfit", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[300]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
 
   ${({ theme }) => theme.media.max.tabletL`
   ${({ theme }) => theme.media.orientation.landscape`
@@ -49,14 +49,14 @@ export const ContentArrow = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-export const ValuesArrow = styled.span`
+export const ValuesArrow = styled.span<{ $isUnavailable: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
   position: relative;
   &::before {
     content: "°";
@@ -64,9 +64,10 @@ export const ValuesArrow = styled.span`
     position: absolute;
     top: -6px;
     left: 100%;
+    display: ${({ $isUnavailable }) => $isUnavailable && "none"};
   }
 `;
-export const SymbolDegreesCelsius = styled.span`
+export const SymbolDegreesCelsius = styled.span<{ $isLoading: boolean }>`
   display: flex;
   position: relative;
   align-items: center;
@@ -74,12 +75,13 @@ export const SymbolDegreesCelsius = styled.span`
   font-size: 1.5rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
   &::before {
     content: "°";
     font-size: 1rem;
     position: absolute;
     top: -6px;
     margin-right: 20px;
+    display: ${({ $isLoading }) => $isLoading && "none"};
   }
 `;

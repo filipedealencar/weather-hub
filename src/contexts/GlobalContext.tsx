@@ -12,8 +12,8 @@ interface GlobalContextData {
   sizeScreen: { width: number; height: number };
   setDarkMode: Dispatch<SetStateAction<boolean>>;
   darkMode: boolean;
-  setClimaticCondition: Dispatch<SetStateAction<string>>;
-  climaticCondition: string;
+  setClimaticCod: Dispatch<SetStateAction<number>>;
+  climaticCod: number;
 }
 
 interface GlobalProps {
@@ -33,7 +33,7 @@ export const GlobalContextProvider = ({ children }: GlobalProps) => {
 
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
-  const [climaticCondition, setClimaticCondition] = useState<string>("");
+  const [climaticCod, setClimaticCod] = useState<number>(800);
 
   useEffect(() => {
     if (typeof window === "object") {
@@ -55,8 +55,8 @@ export const GlobalContextProvider = ({ children }: GlobalProps) => {
   return (
     <GlobalContext.Provider
       value={{
-        setClimaticCondition,
-        climaticCondition,
+        setClimaticCod,
+        climaticCod,
         setSizeScreen,
         sizeScreen,
         setDarkMode,

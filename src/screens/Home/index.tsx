@@ -26,32 +26,32 @@ const Home: React.FC = ({}) => {
 
   const [coordinates, setCoordinates] = useState<Coordinates[]>([
     {
-      country: "nigeria",
+      country: "Nigeria",
       locality: "Dallol",
       coord: { lat: 10.244667, lon: 11.7871911 },
     },
     {
-      country: "usa",
+      country: "USA",
       locality: "Fairbanks",
       coord: { lat: 64.837845, lon: -147.716675 },
     },
     {
-      country: "unitedKingdom",
+      country: "United_Kingdom",
       locality: "Londres",
       coord: { lat: 51.5073219, lon: -0.1276474 },
     },
     {
-      country: "brasil",
+      country: "Brasil",
       locality: "Recife",
       coord: { lat: -8.0584933, lon: -34.8848193 },
     },
     {
-      country: "canada",
+      country: "Canada",
       locality: "Vancouver",
-      coord: { lat: 49.592949450000006, lon: -125.70255696124094 },
+      coord: { lat: 49.2608724, lon: -123.113952 },
     },
     {
-      country: "russia",
+      country: "Russia",
       locality: "Yakutsk",
       coord: { lat: 62.0274078, lon: 129.7319787 },
     },

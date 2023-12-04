@@ -5,4 +5,5 @@ interface IWeatherTimeline {
     data: WeatherDto;
     forecast: WeatherDataDto;
   };
+  isLoading: boolean;
 }

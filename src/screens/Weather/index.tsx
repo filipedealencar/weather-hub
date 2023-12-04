@@ -13,8 +13,11 @@ import { WeatherTimeline } from "./WeatherTimeline";
 import WeatherDto, { WeatherDataDto } from "@/dto/Weather";
 import { GlobalContext } from "@/contexts/GlobalContext";
 import WeatherApi from "@/services/api/weather";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Skeleton from "react-loading-skeleton";
+import toast from "react-hot-toast";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Weather: React.FC = ({}) => {
   const router = useRouter();
@@ -22,18 +25,35 @@ const Weather: React.FC = ({}) => {
   const [dataWeather, setDataWeather] = useState<
     WeatherDto | null | undefined
   >();
-  const { setClimaticCondition } = useContext(GlobalContext);
-
+  const { setClimaticCod } = useContext(GlobalContext);
   const weatherData = new WeatherApi();
-
-  const { data } = weatherData.getCurrentWeather({
+  const [loading, setLoading] = useState(true);
+  const { data, isLoading, error } = weatherData.getCurrentWeather({
     lat: Number(lat),
     lon: Number(lon),
   });
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (isLoading === false) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     setDataWeather(data);
-    setClimaticCondition(data?.weather[0]?.main ?? "");
+    setClimaticCod(data?.weather?.[0]?.id ?? 800);
+
+    if (String(data?.cod) === "400") {
+      setTimeout(() => {
+        router
+          .replace("/")
+          .then(() => toast.error("First, select a location."));
+      }, 2100);
+    }
   }, [data]);
 
   const { data: forecast } = weatherData.getForecastWeather({
@@ -42,7 +62,7 @@ const Weather: React.FC = ({}) => {
   });
 
   console.log("data ", data);
-  console.log("forecast ", forecast);
+  console.log("error ", error);
 
   return (
     <WrapperWeather>
@@ -52,21 +72,55 @@ const Weather: React.FC = ({}) => {
       <ContainerWeather>
         <ContentWeather>
           <ContentTitle>
-            <TitleCity>{dataWeather?.name}</TitleCity>
-            <TitleTypeWeather>{dataWeather?.weather[0].main}</TitleTypeWeather>
+            <TitleCity>
+              {loading ? (
+                <Skeleton
+                  baseColor="#c3c3c3"
+                  duration={1}
+                  height={30}
+                  width={300}
+                />
+              ) : (
+                dataWeather?.name ?? "N/A"
+              )}
+            </TitleCity>
+            <TitleTypeWeather>
+              {loading ? (
+                <Skeleton
+                  baseColor="#c3c3c3"
+                  duration={1}
+                  height={30}
+                  width={200}
+                />
+              ) : (
+                dataWeather?.weather?.[0]?.main ?? "N/A"
+              )}
+            </TitleTypeWeather>
           </ContentTitle>
           <DegressValue
-            value={Math.round(Number(data?.main.temp)) ?? 0}
-            weatherUp={Math.round(Number(data?.main.temp_max)) ?? 0}
-            weatherDown={Math.round(Number(data?.main.temp_min)) ?? 0}
+            isLoading={loading}
+            value={Math.round(Number(data?.main?.temp)) ?? 0}
+            weatherUp={Math.round(Number(data?.main?.temp_max)) ?? 0}
+            weatherDown={Math.round(Number(data?.main?.temp_min)) ?? 0}
           />
-          <IconCloud
-            width={150}
-            height={150}
-            types={dataWeather?.weather[0].icon ?? "01d"}
-          />
+          {loading ? (
+            <Skeleton
+              baseColor="#c3c3c3"
+              duration={1}
+              height={80}
+              width={120}
+              style={{ marginRight: "25px", borderRadius: "25%" }}
+            />
+          ) : (
+            <IconCloud
+              width={150}
+              height={150}
+              types={dataWeather?.weather?.[0]?.icon ?? "01d"}
+            />
+          )}
         </ContentWeather>
         <WeatherTimeline
+          isLoading={loading}
           options={{
             data: data ?? ([] as any),
             forecast: forecast ?? ([] as any),

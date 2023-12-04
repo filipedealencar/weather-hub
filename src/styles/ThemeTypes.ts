@@ -11,7 +11,7 @@ export interface ThemeInterface {
   };
   mediaValues: breakpointValues;
   typography: typographyValues;
-  colors: TypeColors;
+  colors: { colors: TypeColors; main: { color: string; background: string } };
 }
 
 declare module "styled-components" {
@@ -169,7 +169,7 @@ export type MediaFunctionOrientation = (
 export type Colors = TypeColors;
 
 interface TypeColors {
-  background: string;
+  secodaryColor: string;
   mainColor: string;
   primary: { [key in ColorVariantReduced]: string };
 }
@@ -196,3 +196,20 @@ export interface breakpointValues {
   desktopL: number;
   desktopXL: number;
 }
+
+type WeatherData = {
+  "2xx": Weather[];
+  "3xx": Weather[];
+  "5xx": Weather[];
+  "6xx": Weather[];
+  "7xx": Weather[];
+  "800": Weather[];
+  "80x": Weather[];
+};
+
+type Weather = {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+};

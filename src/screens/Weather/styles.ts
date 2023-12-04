@@ -49,7 +49,7 @@ export const TitleCity = styled.h2`
   font-size: ${({ theme }) => theme.typography.fontSize.ml};
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
   text-transform: uppercase;
 
   ${({ theme }) => theme.media.max.tabletL`
@@ -67,7 +67,7 @@ export const TitleTypeWeather = styled.span`
   font-size: 28px;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[100]};
-  color: ${({ theme }) => theme.colors.mainColor};
+  color: ${({ theme }) => theme.colors.main.color};
 
   ${({ theme }) => theme.media.max.tabletL`
   

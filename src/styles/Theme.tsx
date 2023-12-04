@@ -131,34 +131,416 @@ const mediaType = {
 };
 
 const colors: Colors = {
-  background: "#0f0f0f",
   mainColor: "#fff",
+  secodaryColor: "#0f0f0f",
   primary: {
     clearSky: `linear-gradient(180deg,rgba(86, 203, 219, 1) 0%,rgba(58, 158, 178, 1) 100%)`,
     partlyCloudy: "#B0E0E6",
     mostlyCloudy: "#778899",
-    cloudy: "#A9A9A9",
+    cloudy:
+      "linear-gradient(180deg, rgb(213 213 213) 0%, rgba(52,164,184,1) 100%)",
     overcast: "#808080",
     foggy: "#D3D3D3",
-    mist: "#E6E6FA",
+    mist: "linear-gradient(180deg, rgba(153,153,153,1) 0%, rgba(153,153,153,1) 100%)",
     haze: "#F0E68C",
     rain: `linear-gradient(180deg, rgba(97,105,120,1) 0%, rgba(65,72,88,1) 100%);`,
-    drizzle: "#87CEFA",
+    drizzle:
+      "linear-gradient(180deg, rgba(224,226,227,1) 0%, rgb(99 163 231) 38%, rgba(52,164,184,1) 100%)",
     freezingRain: "#B0C4DE",
     snow: "linear-gradient(180deg, rgba(224,224,224,1) 0%, rgba(172,172,172,1) 100%);",
     sleet: "#ADD8E6",
     hail: "#F5F5F5",
-    thunderstorm: "#556B2F",
+    thunderstorm:
+      "linear-gradient(180deg, rgb(1 21 33) 0%, rgb(99 97 97) 100%)",
     tornado: "#8B4513",
     hurricaneTyphoon: "#8B0000",
   },
 };
 
-const theme = (mainColor: string, background: string): ThemeInterface => {
+const weatherData = [
+  {
+    id: 200,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 201,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 202,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 210,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 211,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 212,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 221,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 230,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 231,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 232,
+    main: "Thunderstorm",
+    background: colors.primary.thunderstorm,
+    mainColor: colors.mainColor,
+  },
+
+  {
+    id: 300,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 301,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 302,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 310,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 311,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 312,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 313,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 314,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 321,
+    main: "Drizzle",
+    background: colors.primary.drizzle,
+    mainColor: colors.mainColor,
+  },
+
+  {
+    id: 500,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 501,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 502,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 503,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 504,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 511,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 520,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 521,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 522,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 531,
+    main: "Rain",
+    background: colors.primary.rain,
+    mainColor: colors.mainColor,
+  },
+
+  {
+    id: 600,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 601,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 602,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 611,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 612,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 613,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 615,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 616,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 620,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 621,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+  {
+    id: 622,
+    main: "Snow",
+    background: colors.primary.snow,
+    mainColor: colors.secodaryColor,
+  },
+
+  {
+    id: 701,
+    main: "Mist",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 711,
+    main: "Smoke",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 721,
+    main: "Haze",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 731,
+    main: "Dust",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 741,
+    main: "Fog",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 751,
+    main: "Sand",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 761,
+    main: "Dust",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 762,
+    main: "Ash",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 771,
+    main: "Squall",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 781,
+    main: "Tornado",
+    background: colors.primary.mist,
+    mainColor: colors.mainColor,
+  },
+
+  {
+    id: 800,
+    main: "Clear",
+    background: colors.primary.clearSky,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 800,
+    main: "Clear",
+    background: colors.primary.clearSky,
+    mainColor: colors.mainColor,
+  },
+
+  {
+    id: 801,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 801,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 802,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 802,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 803,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 803,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 804,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+  {
+    id: 804,
+    main: "Clouds",
+    background: colors.primary.cloudy,
+    mainColor: colors.mainColor,
+  },
+];
+
+const theme = (climaticCod: number): ThemeInterface => {
   return {
     media: mediaType,
     mediaValues: breakpointsSizes,
-    colors: { ...colors, mainColor, background },
+    colors: {
+      colors,
+      main: {
+        color:
+          weatherData.find((val) => val.id === climaticCod)?.mainColor ??
+          colors.mainColor,
+        background:
+          weatherData.find((val) => val.id === climaticCod)?.background ??
+          "#fff",
+      },
+    },
     typography: typography,
   };
 };

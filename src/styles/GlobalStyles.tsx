@@ -16,9 +16,7 @@ html,body {
     zoom: 0 !important;
     font-family: 'Open Sans',sans-serif;
     line-height: 20px;
-    background: ${({ theme }) =>
-      theme.colors.background ??
-      "linear-gradient(180deg, rgba(105,213,203,1) 0%, rgba(146,169,251,1) 100%)"};
+    background: ${({ theme }) => theme.colors.main.background};
     width: 100vw;
   height: 100vh;
     font-size: 16px;
@@ -30,6 +28,9 @@ html,body {
     margin: 0px auto;
     width: auto;
     -webkit-font-smoothing: antialiased;
+    transition: background 0.5s ease;
+    background-size: cover; 
+  background-attachment: fixed;
     
   }
 
