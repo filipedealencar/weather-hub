@@ -4,7 +4,7 @@ export const WrapperHome = styled.section`
   display: flex;
   width: 100%;
   height: 100vh;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: #0f0f0f;
 `;
 
 export const ContainerHome = styled.div`
@@ -13,6 +13,12 @@ export const ContainerHome = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  ${({ theme }) => theme.media.max.tabletL`
+  ${({ theme }) => theme.media.orientation.landscape`
+   padding: 20px;
+  `}
+  `};
 `;
 export const ContentHome = styled.div`
   display: flex;
@@ -20,6 +26,15 @@ export const ContentHome = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 350px;
+
+  ${({ theme }) => theme.media.max.tabletL`
+  ${({ theme }) => theme.media.orientation.landscape`
+   svg {
+    width: 70px;
+    height: 70px;
+       }
+  `}
+  `};
 `;
 
 export const ContentTitle = styled.div`
@@ -50,13 +65,24 @@ export const TitleSelect = styled.span`
   color: #e4e4e4;
 `;
 
-export const TitleCity = styled.h2`
+export const ContentTitleCity = styled.div`
   display: flex;
-  width: 100%;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  max-width: 102px;
+  cursor: pointer;
+`;
+
+export const TitleCity = styled.h2`
   font-size: 22px;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[300]};
   color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    color: #9d9d9d;
+  }
 `;

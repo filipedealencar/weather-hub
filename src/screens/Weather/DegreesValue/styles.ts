@@ -5,16 +5,29 @@ export const ContentDegreesCelsius = styled.div`
   justify-content: center;
   align-items: center;
   height: 90px;
+
+  ${({ theme }) => theme.media.max.tabletL`
+  ${({ theme }) => theme.media.orientation.landscape`
+  height: 65px;
+  `}
+  `}
 `;
 export const DegreesCelsius = styled.span`
   display: flex;
   width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
   font-size: 7.5rem;
   font-family: "Outfit", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[300]};
-  color: #1f1f1f;
+  color: ${({ theme }) => theme.colors.mainColor};
+
+  ${({ theme }) => theme.media.max.tabletL`
+  ${({ theme }) => theme.media.orientation.landscape`
+  font-size: 5.5rem;
+  `}
+  `}
 `;
 
 export const ContainerInfoDegreesCelsius = styled.div`
@@ -31,7 +44,8 @@ export const ContainertArrow = styled.div`
 `;
 export const ContentArrow = styled.div`
   display: flex;
-  width: 30px;
+  gap: 4px;
+
   align-items: center;
   justify-content: space-between;
 `;
@@ -42,14 +56,14 @@ export const ValuesArrow = styled.span`
   font-size: 1rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: #1f1f1f;
+  color: ${({ theme }) => theme.colors.mainColor};
   position: relative;
   &::before {
     content: "°";
     font-size: 1rem;
     position: absolute;
     top: -6px;
-    left: 10px;
+    left: 100%;
   }
 `;
 export const SymbolDegreesCelsius = styled.span`
@@ -60,12 +74,12 @@ export const SymbolDegreesCelsius = styled.span`
   font-size: 1.5rem;
   font-family: "Nunito Sans", sans-serif;
   font-weight: ${({ theme }) => theme.typography.fontWeight[400]};
-  color: #1f1f1f;
+  color: ${({ theme }) => theme.colors.mainColor};
   &::before {
     content: "°";
     font-size: 1rem;
     position: absolute;
     top: -6px;
-    right: 16px;
+    margin-right: 20px;
   }
 `;

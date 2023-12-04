@@ -9,20 +9,24 @@ import {
   ValuesArrow,
 } from "./styles";
 
-export const DegressValue: React.FC = ({}) => {
+export const DegressValue: React.FC<IDegreesCelsius> = ({
+  value,
+  weatherUp,
+  weatherDown,
+}) => {
   return (
     <ContentDegreesCelsius>
-      <DegreesCelsius>-2</DegreesCelsius>
+      <DegreesCelsius>{value ?? 0}</DegreesCelsius>
       <ContainerInfoDegreesCelsius>
         <SymbolDegreesCelsius>C</SymbolDegreesCelsius>
         <ContainertArrow>
           <ContentArrow>
             <ArrowIcon />
-            <ValuesArrow>0</ValuesArrow>
+            <ValuesArrow>{weatherUp ?? 0}</ValuesArrow>
           </ContentArrow>
           <ContentArrow>
             <ArrowIcon arrowDown />
-            <ValuesArrow>8</ValuesArrow>
+            <ValuesArrow>{weatherDown ?? 0}</ValuesArrow>
           </ContentArrow>
         </ContainertArrow>
       </ContainerInfoDegreesCelsius>

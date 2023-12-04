@@ -31,18 +31,36 @@ const App: React.FC<AppProps> = ({
   }, []);
 
   const ThemeWrapper = () => {
-    const { darkMode } = useContext(GlobalContext);
+    const { climaticCondition } = useContext(GlobalContext);
+
+    const backgrounds = {
+      rainy: `linear-gradient(180deg, rgba(97,105,120,1) 0%, rgba(65,72,88,1) 100%);`,
+      snowy:
+        "linear-gradient(180deg, rgba(224,224,224,1) 0%, rgba(172,172,172,1) 100%);",
+      sunny: `linear-gradient(180deg,rgba(86, 203, 219, 1) 0%,rgba(58, 158, 178, 1) 100%)`,
+    };
+    type bg = keyof typeof backgrounds;
 
     return Component.getLayout ? (
       Component.getLayout(
-        <ThemeProvider theme={theme(darkMode ? "dark" : "light")}>
+        <ThemeProvider
+          theme={theme(
+            climaticCondition.toLowerCase() === "snowy" ? "#1F1F1F" : "#fff",
+            backgrounds[climaticCondition.toLowerCase() as bg]
+          )}
+        >
           <GlobalStyle />
 
           <Component {...pageProps} />
         </ThemeProvider>
       )
     ) : (
-      <ThemeProvider theme={theme(darkMode ? "dark" : "light")}>
+      <ThemeProvider
+        theme={theme(
+          climaticCondition.toLowerCase() === "snowy" ? "#1F1F1F" : "#fff",
+          backgrounds[climaticCondition.toLowerCase() as bg]
+        )}
+      >
         <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>

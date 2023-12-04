@@ -4,7 +4,6 @@ import React, {
   ReactNode,
   SetStateAction,
   useEffect,
-  useRef,
   useState,
 } from "react";
 
@@ -13,6 +12,8 @@ interface GlobalContextData {
   sizeScreen: { width: number; height: number };
   setDarkMode: Dispatch<SetStateAction<boolean>>;
   darkMode: boolean;
+  setClimaticCondition: Dispatch<SetStateAction<string>>;
+  climaticCondition: string;
 }
 
 interface GlobalProps {
@@ -31,6 +32,8 @@ export const GlobalContextProvider = ({ children }: GlobalProps) => {
   });
 
   const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const [climaticCondition, setClimaticCondition] = useState<string>("");
 
   useEffect(() => {
     if (typeof window === "object") {
@@ -52,6 +55,8 @@ export const GlobalContextProvider = ({ children }: GlobalProps) => {
   return (
     <GlobalContext.Provider
       value={{
+        setClimaticCondition,
+        climaticCondition,
         setSizeScreen,
         sizeScreen,
         setDarkMode,

@@ -1,7 +1,14 @@
-import { CSSProp, Interpolation } from "styled-components";
+import { CSSProp, Interpolation, RuleSet } from "styled-components";
 
 export interface ThemeInterface {
-  media: { min: MediaFunction; max: MediaFunction };
+  media: {
+    min: MediaFunction;
+    max: MediaFunction;
+    orientation: {
+      landscape: MediaFunctionOrientation;
+      portrait: MediaFunctionOrientation;
+    };
+  };
   mediaValues: breakpointValues;
   typography: typographyValues;
   colors: TypeColors;
@@ -10,6 +17,8 @@ export interface ThemeInterface {
 declare module "styled-components" {
   export interface DefaultTheme extends ThemeInterface {}
 }
+
+type breakpointsOrientation = "landscape" | "portrait";
 
 type breakpointsSizes =
   /** value equivalent to 240px */
@@ -153,11 +162,15 @@ interface typographyValues {
 export type MediaFunction = {
   [key in breakpointsSizes]: (...args: Interpolation<object>[]) => CSSProp;
 };
+export type MediaFunctionOrientation = (
+  ...args: Interpolation<object>[]
+) => RuleSet<object>;
 
-export type Colors = { dark: TypeColors; light: TypeColors };
+export type Colors = TypeColors;
 
 interface TypeColors {
   background: string;
+  mainColor: string;
   primary: { [key in ColorVariantReduced]: string };
 }
 

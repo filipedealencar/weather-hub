@@ -6,16 +6,19 @@ const GlobalStyle = createGlobalStyle`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 
 
 
 html,body {
-
+    zoom: 0 !important;
     font-family: 'Open Sans',sans-serif;
     line-height: 20px;
-    background: ${({ theme }) => theme.colors.primary.snow};
+    background: ${({ theme }) =>
+      theme.colors.background ??
+      "linear-gradient(180deg, rgba(105,213,203,1) 0%, rgba(146,169,251,1) 100%)"};
     width: 100vw;
   height: 100vh;
     font-size: 16px;

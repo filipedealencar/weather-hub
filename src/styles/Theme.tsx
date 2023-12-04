@@ -1,6 +1,11 @@
 import { css } from "styled-components";
 import { Interpolation } from "styled-components/dist/types";
-import { Colors, MediaFunction, ThemeInterface } from "./ThemeTypes";
+import {
+  Colors,
+  MediaFunction,
+  MediaFunctionOrientation,
+  ThemeInterface,
+} from "./ThemeTypes";
 
 export const breakpointsSizes = {
   /** Width equivalent to 240px */
@@ -83,72 +88,77 @@ const typography = {
 
 type Size = keyof typeof breakpointsSizes;
 
-const media = (type: "min" | "max"): MediaFunction =>
+const media = (type: "min" | "max" | "orientation"): MediaFunction =>
   Object.keys(breakpointsSizes).reduce((acc: any, label) => {
-    acc[label] = (...args: Interpolation<object>[]) => css`
-      @media (${type}-width: ${breakpointsSizes[label as Size]}px) {
-        ${css`
-          ${args}
-        `};
-      }
-    `;
+    if (type === "orientation") {
+      acc[type] = (...args: Interpolation<object>[]) => css`
+        @media (orientation: landscape) {
+          ${css`
+            ${args}
+          `};
+        }
+      `;
+    } else {
+      acc[label as Size] = (...args: Interpolation<object>[]) => css`
+        @media (${type}-width: ${breakpointsSizes[label as Size]}px) {
+          ${css`
+            ${args}
+          `};
+        }
+      `;
+    }
     return acc;
   }, {} as MediaFunction);
+const mediaorientation = (
+  type: "landscape" | "portrait"
+): MediaFunctionOrientation => {
+  return (...args: Interpolation<object>[]) => css`
+    @media (orientation: ${type}) {
+      ${css`
+        ${args}
+      `};
+    }
+  `;
+};
 
-const mediaType = { min: media("min"), max: media("max") };
-
-const colors: Colors = {
-  light: {
-    background: "#0f0f0f",
-    primary: {
-      clearSky: `linear-gradient(180deg,rgba(86, 203, 219, 1) 0%,rgba(58, 158, 178, 1) 100%)`,
-      partlyCloudy: "#B0E0E6",
-      mostlyCloudy: "#778899",
-      cloudy: "#A9A9A9",
-      overcast: "#808080",
-      foggy: "#D3D3D3",
-      mist: "#E6E6FA",
-      haze: "#F0E68C",
-      rain: `linear-gradient(180deg, rgba(97,105,120,1) 0%, rgba(65,72,88,1) 100%);`,
-      drizzle: "#87CEFA",
-      freezingRain: "#B0C4DE",
-      snow: "linear-gradient(180deg, rgba(224,224,224,1) 0%, rgba(172,172,172,1) 100%);",
-      sleet: "#ADD8E6",
-      hail: "#F5F5F5",
-      thunderstorm: "#556B2F",
-      tornado: "#8B4513",
-      hurricaneTyphoon: "#8B0000",
-    },
-  },
-  dark: {
-    background: "#0f0f0f",
-    primary: {
-      clearSky: "#57cbdc",
-      partlyCloudy: "#6BA8B8",
-      mostlyCloudy: "#536573",
-      cloudy: "#757575",
-      overcast: "#555555",
-      foggy: "#AFAFAF",
-      mist: "#C8C8E0",
-      haze: "#C8B560",
-      rain: "#2C5C87",
-      drizzle: "#5D9AC7",
-      freezingRain: "#829EB8",
-      snow: "#E5E5E5",
-      sleet: "#84B7D1",
-      hail: "#D5D5D5",
-      thunderstorm: "#3A4E25",
-      tornado: "#5E3D1E",
-      hurricaneTyphoon: "#5E0000",
-    },
+const mediaType = {
+  min: media("min"),
+  max: media("max"),
+  orientation: {
+    landscape: mediaorientation("landscape"),
+    portrait: mediaorientation("portrait"),
   },
 };
 
-const theme = (mode: "light" | "dark"): ThemeInterface => {
+const colors: Colors = {
+  background: "#0f0f0f",
+  mainColor: "#fff",
+  primary: {
+    clearSky: `linear-gradient(180deg,rgba(86, 203, 219, 1) 0%,rgba(58, 158, 178, 1) 100%)`,
+    partlyCloudy: "#B0E0E6",
+    mostlyCloudy: "#778899",
+    cloudy: "#A9A9A9",
+    overcast: "#808080",
+    foggy: "#D3D3D3",
+    mist: "#E6E6FA",
+    haze: "#F0E68C",
+    rain: `linear-gradient(180deg, rgba(97,105,120,1) 0%, rgba(65,72,88,1) 100%);`,
+    drizzle: "#87CEFA",
+    freezingRain: "#B0C4DE",
+    snow: "linear-gradient(180deg, rgba(224,224,224,1) 0%, rgba(172,172,172,1) 100%);",
+    sleet: "#ADD8E6",
+    hail: "#F5F5F5",
+    thunderstorm: "#556B2F",
+    tornado: "#8B4513",
+    hurricaneTyphoon: "#8B0000",
+  },
+};
+
+const theme = (mainColor: string, background: string): ThemeInterface => {
   return {
     media: mediaType,
     mediaValues: breakpointsSizes,
-    colors: colors[mode],
+    colors: { ...colors, mainColor, background },
     typography: typography,
   };
 };
