@@ -29,8 +29,6 @@ html,body {
     width: auto;
     -webkit-font-smoothing: antialiased;
     transition: background 0.5s ease;
-    background-size: cover; 
-  background-attachment: fixed;
     
   }
 

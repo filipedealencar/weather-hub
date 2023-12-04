@@ -32,8 +32,6 @@ const Weather: React.FC = ({}) => {
     lat: Number(lat),
     lon: Number(lon),
   });
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
 
   useEffect(() => {
     if (isLoading === false) {
@@ -78,7 +76,7 @@ const Weather: React.FC = ({}) => {
                   baseColor="#c3c3c3"
                   duration={1}
                   height={30}
-                  width={300}
+                  width={200}
                 />
               ) : (
                 dataWeather?.name ?? "N/A"
@@ -90,7 +88,7 @@ const Weather: React.FC = ({}) => {
                   baseColor="#c3c3c3"
                   duration={1}
                   height={30}
-                  width={200}
+                  width={150}
                 />
               ) : (
                 dataWeather?.weather?.[0]?.main ?? "N/A"
