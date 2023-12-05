@@ -8,6 +8,10 @@ Este projeto foi criado para proporcionar uma experiência totalmente agradável
 
 O Weather Hub foi 100% desenvolvido por Luis Filipe Joaquim de Alencar, um experiente desenvolvedor front-end com 3 anos de atuação na área, com projetos robustos e profissionais
 
+## Demonstração Ao Vivo
+
+O projeto está ao vivo e pode ser acessado em [Weather Hub Demo Ao Vivo](https://filipe-alencar-creative-challenge-tds.netlify.app/).
+
 ## Funcionalidades
 
 - **Selecione a localização desejada.**
