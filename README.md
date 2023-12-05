@@ -19,10 +19,11 @@ O Weather Hub foi 100% desenvolvido por Luis Filipe Joaquim de Alencar, um exper
 - **React e Next.js:** Frameworks JavaScript amplamente utilizados para construção de interfaces web modernas.
 - **TypeScript:** Adiciona tipagem estática ao JavaScript, trazendo benefícios de legibilidade e manutenibilidade ao código.
 - **SWR:** Biblioteca React que fornece uma abordagem eficiente para buscar, armazenar em cache e gerenciar o estado de dados remotos.
+- **Styled Components:** Estiliza componentes em aplicações React usando uma abordagem baseada em componentes e CSS-in-JS (CSS dentro do JavaScript). .
 - **React Loading Skeleton:** Adiciona esqueletos de carregamento para melhorar a experiência do usuário durante o carregamento de dados.
 - **React Hot Toast:** Biblioteca React que oferece uma solução simples e estilizada para exibir notificações (toasts) na interface do usuário.
 
-## Principais destaques
+## Principais Destaques
 
 - **Navegação suave entre páginas.**
 - **Experiência totalmente responsiva em diferentes dispositivos.**
