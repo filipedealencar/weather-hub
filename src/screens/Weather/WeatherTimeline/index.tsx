@@ -30,13 +30,13 @@ export const WeatherTimeline: React.FC<IWeatherTimeline> = ({
   }, [sizeScreen]);
 
   const getPeriodOfDay = (hour: number) => {
-    if (hour >= 0 && hour < 6) {
+    if (hour >= 3 && hour < 9) {
       return "dawn";
-    } else if (hour >= 6 && hour < 12) {
+    } else if (hour >= 9 && hour < 15) {
       return "morning";
-    } else if (hour >= 12 && hour < 18) {
+    } else if (hour >= 15 && hour < 21) {
       return "afternoon";
-    } else {
+    } else if (hour >= 21) {
       return "night";
     }
   };

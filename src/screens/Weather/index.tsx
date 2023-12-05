@@ -17,7 +17,6 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Skeleton from "react-loading-skeleton";
 import toast from "react-hot-toast";
-import { usePathname, useSearchParams } from "next/navigation";
 
 const Weather: React.FC = ({}) => {
   const router = useRouter();
