@@ -35,8 +35,6 @@ const App: React.FC<AppProps> = ({
   const ThemeWrapper = () => {
     const { climaticCod } = useContext(GlobalContext);
 
-    console.log(climaticCod);
-
     return Component.getLayout ? (
       Component.getLayout(
         <ThemeProvider theme={theme(climaticCod)}>

@@ -59,10 +59,6 @@ export const WeatherTimeline: React.FC<IWeatherTimeline> = ({
     return [dawnObj!, morningObj!, afternoonObj!, nightObj!];
   }
 
-  useEffect(() => {
-    console.log(selectObjectsByTimePeriod(options.forecast));
-  }, [options.forecast]);
-
   return (
     <MainWeatherTimeline>
       <GridResponsive

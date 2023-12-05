@@ -58,9 +58,6 @@ const Weather: React.FC = ({}) => {
     lon: Number(lon),
   });
 
-  console.log("data ", data);
-  console.log("error ", error);
-
   return (
     <WrapperWeather>
       <ContainerArrowLeft onClick={() => router.push(`/`)}>
